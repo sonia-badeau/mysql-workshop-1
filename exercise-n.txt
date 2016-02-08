@@ -102,11 +102,3 @@ describe Entry;
 | AddressBook.id   | int(11)                         | YES  |     | NULL    |                |
 +------------------+---------------------------------+------+-----+---------+----------------+
 
-Exercise 9
-
-- Create a data model representing a Barn with Chickens :hatching_chick:
-- This model should provide answers to the following questions:
-- How many rooster, hen and chicks existed in the Barn on a specific date
-- How many chicks will come to age on a specific date
-
-Work in progress...
