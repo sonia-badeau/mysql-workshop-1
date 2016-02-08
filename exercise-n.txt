@@ -1,0 +1,112 @@
+Exercise 1
+- Connect to the MySQL instance within your Workspace using your Cloud9 username
+
+$ mysql -u sonia-badeau
+
+Exercise 2
+- Create a database named decodemtl_test within MySQL(X)
+mysql> create database decodemtl_test;
+
+- Create a database named decodemtl_addressbook within MySQL(X)
+mysql> create database decodemtl_addressbook;
+
+Exercise 3
+- Remove database named decodemtl_test from 
+drop database decodemtl_test;
+
+Exercise 4
+- Return the list of databases within MySQL
+show databases;
+
+Exercise 5
+- Create table Account for database decodemtl_addressbook
+create table Account (`Ìd.Account`int primary key auto_increment);
+- Create table AddressBook for database decodemtl_addressbook
+create table AddressBook (`AddressAddressBook.id`int primary key auto_increment);   
+- Create table Entry for database decodemtl_addressbook
+create table Entry (`Entry.id`int primary key auto_increment);   
+- Create table Test for database decodemtl_addressbook
+create table Test (`Test.id`int primary key auto_increment);        
+
+Exercise 6
+- Remove table Test for database decodemtl_addressbook
+drop table Test;
+
+Exercise 7
+- Return list of tables within database decodemtl_addressbook
+show tables;
+
+Exercise 8
+- Reflect the data model shown in schema/addressbook_denormalized.png within database decodemtl_addressbook
+- Account.id is a primary auto-increment key
+- AddressBook.id is a primary auto-increment key
+- Entry.id is a primary auto-increment key
+- Entry.type is an ENUM column permitting home, work and other
+- Entry.subtype is an ENUM column permitting phone, address and email
+
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| AddressBook                     |
+| Entry                           |
++---------------------------------+
+
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| mysql                 |
+| performance_schema    |
++-----------------------+
+
+describe Account;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| Account.id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email      | varchar(255) | YES  |     | NULL    |                |
+| password   | varchar(40)  | YES  |     | NULL    |                |
+| createdOn  | datetime     | YES  |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+describe AddressBook;
++-----------------------+--------------+------+-----+---------+----------------+
+| Field                 | Type         | Null | Key | Default | Extra          |
++-----------------------+--------------+------+-----+---------+----------------+
+| AddressAddressBook.id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name                  | varchar(255) | YES  |     | NULL    |                |
+| createdOn             | datetime     | YES  |     | NULL    |                |
+| modifiedOn            | datetime     | YES  |     | NULL    |                |
+| AccountId             | int(11)      | YES  |     | NULL    |                |
++-----------------------+--------------+------+-----+---------+----------------+
+
+describe Entry;
++------------------+---------------------------------+------+-----+---------+----------------+
+| Field            | Type                            | Null | Key | Default | Extra          |
++------------------+---------------------------------+------+-----+---------+----------------+
+| Entry.id         | int(11)                         | NO   | PRI | NULL    | auto_increment |
+| firstName        | varchar(255)                    | YES  |     | NULL    |                |
+| lastName         | varchar(255)                    | YES  |     | NULL    |                |
+| birthday         | datetime                        | YES  |     | NULL    |                |
+| type             | enum('home','work','other')     | YES  |     | NULL    |                |
+| subtype          | enum('phone','address','email') | YES  |     | NULL    |                |
+| contentLineOne   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineTwo   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineThree | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFour  | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFive  | varchar(255)                    | YES  |     | NULL    |                |
+| AddressBook.id   | int(11)                         | YES  |     | NULL    |                |
++------------------+---------------------------------+------+-----+---------+----------------+
+
+Exercise 9
+
+- Create a data model representing a Barn with Chickens :hatching_chick:
+- This model should provide answers to the following questions:
+- How many rooster, hen and chicks existed in the Barn on a specific date
+- How many chicks will come to age on a specific date
+
+Work in progress...
