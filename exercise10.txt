@@ -1,0 +1,36 @@
+Exercise 10 (Workshop Challenge)
+
+- Create a data model representing a Hotel with Floors and Rooms :hotel:
+- This model should provide answers to the following questions:
+- The list of Rooms available for rent on a specific date
+- The list of Rooms which can be occupied by at least 3 people on a specific date
+- The amount of unrentable Rooms (janitor closets, public laundry room, gym, etc.)
+- The amount of Rooms having a private Kitchen
+- The average amount of windows per Floor
+- The amount of Floors having Rooms with carpets
+
+ mysql> create database Hotel_Floors_Rooms;
+ mysql> use Hotel_Floors_Rooms
+ mysql> create table rooms (`Id` int primary key auto_increment, `rooms_availability_date` datetime, `rooms_for_threeandmodre` boolean, `unrentable_rooms` boolean, `private_kitchen_rooms` boolean, `rooms_with_carpets` boolean);
+ 
+ +-------------------------+------------+------+-----+---------+----------------+
+| Field                   | Type       | Null | Key | Default | Extra          |
++-------------------------+------------+------+-----+---------+----------------+
+| Id                      | int(11)    | NO   | PRI | NULL    | auto_increment |
+| rooms_availability_date | datetime   | YES  |     | NULL    |                |
+| rooms_for_threeandmodre | tinyint(1) | YES  |     | NULL    |                |
+| unrentable_rooms        | tinyint(1) | YES  |     | NULL    |                |
+| private_kitchen_rooms   | tinyint(1) | YES  |     | NULL    |                |
+| rooms_with_carpets      | tinyint(1) | YES  |     | NULL    |                |
++-------------------------+------------+------+-----+---------+----------------+
+
+mysql> create table floors (`Id` int primary key auto_increment, `Rooms.id` int, `windows_per_floor` boolean, `rooms_with_carpets` boolean);
+
++--------------------+------------+------+-----+---------+----------------+
+| Field              | Type       | Null | Key | Default | Extra          |
++--------------------+------------+------+-----+---------+----------------+
+| Id                 | int(11)    | NO   | PRI | NULL    | auto_increment |
+| Rooms.id           | int(11)    | YES  |     | NULL    |                |
+| windows_per_floor  | tinyint(1) | YES  |     | NULL    |                |
+| rooms_with_carpets | tinyint(1) | YES  |     | NULL    |                |
++--------------------+------------+------+-----+---------+----------------+
