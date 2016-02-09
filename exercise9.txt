@@ -1,0 +1,22 @@
+Exercise 9
+
+// Modélisation de données
+
+- Create a data model representing a Barn with Chickens :hatching_chick:
+- This model should provide answers to the following questions:
+- How many rooster, hen and chicks existed in the Barn on a specific date
+- How many chicks will come to age on a specific date
+
+Database Name : Barn_with_Chickens
+
+create table inventory (`Id`int primary key auto_increment, `Species` enum('Rooster', 'Hen', 'Chicks'), `date_of_birth` datetime, `date_of_death` datetime);
+
++---------------+--------------------------------+------+-----+---------+----------------+
+| Field         | Type                           | Null | Key | Default | Extra          |
++---------------+--------------------------------+------+-----+---------+----------------+
+| Id            | int(11)                        | NO   | PRI | NULL    | auto_increment |
+| Species       | enum('Rooster','Hen','Chicks') | YES  |     | NULL    |                |
+| date_of_birth | datetime                       | YES  |     | NULL    |                |
+| date_of_death | datetime                       | YES  |     | NULL    |                |
++---------------+--------------------------------+------+-----+---------+----------------+
+
