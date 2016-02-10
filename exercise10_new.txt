@@ -1,0 +1,97 @@
+Exercise 10 (Workshop Challenge)
+
+- Create a data model representing a Hotel with Floors and Rooms :hotel:
+- This model should provide answers to the following questions:
+- The list of Rooms available for rent on a specific date
+- The list of Rooms which can be occupied by at least 3 people on a specific date
+- The amount of unrentable Rooms (janitor closets, public laundry room, gym, etc.)
+- The amount of Rooms having a private Kitchen
+- The average amount of windows per Floor
+- The amount of Floors having Rooms with carpets
+
+Problème et modèle conceptuel de données : 
+Un client veut réserver une ou plusieurs chambres qui ont différents types et sont situées à différents étages.
+Nous avons donc 5 tables qui sont les suivantes :
+
+//CLIENT
+(`idClient` int primary key auto_increment,  `name` varchar(255),  `firstName` varchar(255), `phone` int, `creditCardNumber` int);
+
+//BOOKING
+(`idBooking` int primary key auto_increment, `arrivalDate` datetime, `departureDate` datetime, `occupantNumber` enum('1', '2', '3', '3+'), `deposit` int);
+
+//ROOM
+(`idRoomNumber` int primary key auto_increment, `idFloorNumber` int);
+
+//ROOMTYPE
+(`idRoomtype` int primary key auto_increment, `unrentableRooms` int, `privateKitchen` int, `carpetRooms` int);
+
+//FLOOR
+(`idFloorNumber` int primary key auto_increment, `idRoomNumber` int, `windows_per_floor` int);
+
+-----
+
+mysql> create database HotelFloorRooms;
+Query OK, 1 row affected (0.01 sec)
+mysql> use HotelFloorRooms;
+Database changed
+
+//CLIENT
+mysql> create table client (`idClient` int primary key auto_increment,  `name` varchar(255),  `firstName` varchar(255), `phone` int, `creditCardNumber` int);
+Query OK, 0 rows affected (0.06 sec)
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| idClient         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name             | varchar(255) | YES  |     | NULL    |                |
+| firstName        | varchar(255) | YES  |     | NULL    |                |
+| phone            | int(11)      | YES  |     | NULL    |                |
+| creditCardNumber | int(11)      | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+
+//BOOKING
+mysql> create table booking (`idBooking` int primary key auto_increment, `arrivalDate` datetime, `departureDate` datetime, `occupantNumber` enum('1', '2', '3', '3+'), `deposit` int);
+Query OK, 0 rows affected (0.01 sec)
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| idBooking      | int(11)                | NO   | PRI | NULL    | auto_increment |
+| arrivalDate    | datetime               | YES  |     | NULL    |                |
+| departureDate  | datetime               | YES  |     | NULL    |                |
+| occupantNumber | enum('1','2','3','3+') | YES  |     | NULL    |                |
+| deposit        | int(11)                | YES  |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+
+//ROOM
+mysql> create table room (`idRoomNumber` int primary key auto_increment, `idFloorNumber` int);
+Query OK, 0 rows affected (0.02 sec)
++---------------+---------+------+-----+---------+----------------+
+| Field         | Type    | Null | Key | Default | Extra          |
++---------------+---------+------+-----+---------+----------------+
+| idRoomNumber  | int(11) | NO   | PRI | NULL    | auto_increment |
+| idFloorNumber | int(11) | YES  |     | NULL    |                |
++---------------+---------+------+-----+---------+----------------+
+
+//ROOMTYPE
+mysql> create table roomtype (`idRoomtype` int primary key auto_increment, `unrentableRooms` int, `privateKitchen` int, `carpetRooms` int);
+Query OK, 0 rows affected (0.01 sec)
++-----------------+---------+------+-----+---------+----------------+
+| Field           | Type    | Null | Key | Default | Extra          |
++-----------------+---------+------+-----+---------+----------------+
+| idRoomtype      | int(11) | NO   | PRI | NULL    | auto_increment |
+| unrentableRooms | int(11) | YES  |     | NULL    |                |
+| privateKitchen  | int(11) | YES  |     | NULL    |                |
+| carpetRooms     | int(11) | YES  |     | NULL    |                |
++-----------------+---------+------+-----+---------+----------------+
+
+//FLOOR
+mysql> create table floor (`idFloorNumber` int primary key auto_increment, `idRoomNumber` int, `windows_per_floor` int);
+Query OK, 0 rows affected (0.01 sec)
++-------------------+---------+------+-----+---------+----------------+
+| Field             | Type    | Null | Key | Default | Extra          |
++-------------------+---------+------+-----+---------+----------------+
+| idFloorNumber     | int(11) | NO   | PRI | NULL    | auto_increment |
+| idRoomNumber      | int(11) | YES  |     | NULL    |                |
+| windows_per_floor | int(11) | YES  |     | NULL    |                |
++-------------------+---------+------+-----+---------+----------------+
+
+
